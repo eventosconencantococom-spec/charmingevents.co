@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eventos con Encanto</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Dancing Script', cursive;
+background:#fafafa;
+color:#333;
+}
+
+header{
+background:linear-gradient(135deg,#ff6fb7,#ffa3d7);
+color:white;
+padding:100px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:48px;
+margin:0;
+}
+
+header p{
+font-size:20px;
+}
+
+.cta{
+background:white;
+color:#ff6fb7;
+padding:15px 30px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+margin-top:20px;
+}
+
+nav{
+background:#333;
+padding:12px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+section{
+padding:60px 10%;
+}
+
+h2{
+text-align:center;
+margin-bottom:40px;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+padding:25px;
+box-shadow:0 6px 15px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+}
+
+.rentals{
+max-width:600px;
+margin:auto;
+}
+
+.rentals li{
+background:white;
+margin:10px 0;
+padding:15px;
+border-radius:8px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.quote{
+max-width:500px;
+margin:auto;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+background:#ff6fb7;
+color:white;
+border:none;
+padding:14px;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+width:100%;
+}
+
+.calculator{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+max-width:500px;
+margin:auto;
+}
+
+.result{
+font-size:22px;
+text-align:center;
+margin-top:20px;
+font-weight:bold;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px 20px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+}
+
+footer{
+background:#333;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:50px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>Eventos con Encanto</h1>
+<p>Balloon Decor • Table Designs • Party Rentals</p>
+
+<a class="cta" href="#quote">Request a Quote</a>
+
+</header>
+
+<nav>
+<a href="#services">Services</a>
+<a href="#gallery">Gallery</a>
+<a href="#rentals">Rentals</a>
+<a href="#calculator">Estimate</a>
+<a href="#quote">Quote</a>
+</nav>
+
+<section id="services">
+
+<h2>Our Services</h2>
+
+<div class="services">
+
+<div class="card">
+<h3>Balloon Garlands</h3>
+<p>Custom balloon garlands for birthdays, showers, and events.</p>
+<p><b>Starting $160</b></p>
+</div>
+
+<div class="card">
+<h3>Table Designs</h3>
+<p>Beautiful themed tables with decorations.</p>
+<p><b>Starting $25 per table</b></p>
+</div>
+
+<div class="card">
+<h3>Backdrops</h3>
+<p>Photo backdrops with balloons and decor.</p>
+<p><b>Starting $220</b></p>
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery">
+
+<h2>Past Work</h2>
+
+<div class="gallery">
+
+<img src="https://image2url.com/r2/default/images/1773699632863-a68571e2-d104-4ec9-bfa7-92f82ee3f8b4.jpeg" alt="image" />
+<img src="https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg" alt="image" />
+<img src="https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg" alt="image" />
+<img src="https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png" alt="image" />
+<img src="https://image2url.com/r2/default/images/1773700520868-3ca00f2a-857f-4a6e-9fef-d3febfa8ee2a.png" alt="image" />
+<img src="https://image2url.com/r2/default/images/1773700556346-f8d777fc-603c-42c5-8263-d85f0ff8a55e.png" alt="image" />
+</div>
+
+</section>
+
+<section id="rentals">
+
+<h2>Rental Items</h2>
+
+<ul class="rentals">
+<li>Throne Chair – $150</li>
+<li>Cylinder Stands (Set of 3) – $50</li>
+<li>Backdrop Stand – $80</li>
+<li>Table Cloth – (Each) - $7</li>
+<li>Chair Cover – (Each) - $1.50</li>
+<li>Table Runner – (Each) - $1.00</li>
+<li>Chair Sashes – (Each) - $0.50</li>
+<li>Robot Suit – (Hourly) - $450</li>
+
+</ul>
+
+</section>
+
+<section id="calculator">
+
+<h2>Price Estimate</h2>
+
+<div class="calculator">
+
+<select id="balloons">
+<option value="0">No Balloon Garland</option>
+<option value="160">Balloon Garland ($160)</option>
+<option value="250">Large Garland ($250)</option>
+</select>
+
+<select id="table">
+<option value="0">No Table Design</option>
+<option value="25">Basic Table ($25)</option>
+<option value="35">Premium Table ($35)</option>
+</select>
+
+<select id="backdrop">
+<option value="0">No Backdrop</option>
+<option value="160">Backdrop ($160)</option>
+</select>
+
+<button onclick="calculate()">Calculate Estimate</button>
+
+<div class="result" id="result">$0</div>
+
+</div>
+
+</section>
+
+<section id="quote">
+
+<h2>Request a Quote</h2>
+
+<div class="quote">
+
+<p>Click the button below to fill out our quote request form. All submissions will be sent directly to our email via Google Forms.</p>
+
+<!-- Correct way: style the <a> as a button -->
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSclf0RmXcOxY3XP06Laudp9lQ1S6mItcl8eBEmUbs2CUbOMZA/viewform?usp=header" 
+   target="_blank"
+   style="display:inline-block; text-align:center; background:#ff6fb7; color:white; padding:14px 25px; border-radius:8px; text-decoration:none; font-weight:bold;">
+   Request a Quote
+</a>
+
+</div>
+</section>
+
+<footer>
+
+<p>© 2026 Eventos con Encanto</p>
+<p>Balloon Decor & Event Styling</p>
+
+</footer>
+
+<script>
+
+function calculate(){
+
+let balloons = parseInt(document.getElementById("balloons").value)
+let table = parseInt(document.getElementById("table").value)
+let backdrop = parseInt(document.getElementById("backdrop").value)
+
+let total = balloons + table + backdrop
+
+document.getElementById("result").innerText = "$" + total
+
+}
+
+</script>
+
+</body>
+</html>
