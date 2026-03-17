@@ -9,6 +9,7 @@
 html, body {
   width: 100%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,16 +24,11 @@ header {
   color:white;
   padding:100px 20px;
   text-align:center;
+  position: relative;
 }
 
-header h1 {
-  font-size:48px;
-  margin:0;
-}
-
-header p {
-  font-size:20px;
-}
+header h1 { font-size:48px; margin:0; }
+header p { font-size:20px; }
 
 .cta {
   background:white;
@@ -43,12 +39,16 @@ header p {
   font-weight:bold;
   display:inline-block;
   margin-top:20px;
+  transition: transform 0.2s ease, padding 0.2s ease, font-size 0.2s ease;
 }
 
 nav {
   background:#333;
   padding:12px;
   text-align:center;
+  position: sticky;
+  top:0;
+  z-index: 1000;
 }
 
 nav a {
@@ -63,17 +63,19 @@ section {
   width:100%;
   min-width:300px;
   box-sizing:border-box;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-h2 {
-  text-align:center;
-  margin-bottom:40px;
-}
+h2 { text-align:center; margin-bottom:40px; }
 
 .services {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
+  width: 100%;
 }
 
 .card {
@@ -82,33 +84,36 @@ h2 {
   padding:25px;
   box-shadow:0 6px 15px rgba(0,0,0,0.1);
   text-align:center;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  transition: all 0.3s ease;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
 .gallery {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:15px;
+  width: 100%;
+  touch-action: pan-y;
 }
 
 .gallery img {
   width:100%;
   border-radius:10px;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
+  cursor:pointer;
   transition: transform 0.3s ease;
 }
+
+.gallery img:hover { transform: scale(1.05); }
 
 .rentals {
   max-width:600px;
   margin:auto;
+  width: 100%;
 }
 
 .rentals li {
@@ -117,74 +122,22 @@ h2 {
   padding:15px;
   border-radius:8px;
   box-shadow:0 3px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
 .rentals li:hover {
   background:#ffe6f2;
   transform: translateX(3px);
-  transition: all 0.3s ease;
 }
 
-/* Lightbox overlay */
-#lightbox {
-  position: fixed;
-  top:0; left:0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-#lightbox-close {
-  position: absolute;
-  top:20px;
-  right:30px;
-  font-size:40px;
-  color:white;
-  cursor:pointer;
-}
-
-.quote {
+.calculator, .quote {
   max-width:500px;
+  width: 100%;
   margin:auto;
-}
-
-input, select, textarea {
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  margin-bottom:15px;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
-
-button {
-  background:#ff6fb7;
-  color:white;
-  border:none;
-  padding:14px;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
-  width:100%;
-}
-
-.calculator {
   background:white;
   padding:25px;
   border-radius:12px;
   box-shadow:0 5px 15px rgba(0,0,0,0.1);
-  max-width:500px;
-  margin:auto;
 }
 
 .result {
@@ -214,58 +167,44 @@ footer {
   margin-top:50px;
 }
 
-/* === Mobile-Friendly Adjustments === */
-@media (max-width: 768px) {
-  header {
-    padding: 60px 20px;
-  }
-  header h1 {
-    font-size: 28px;
-  }
-  header p {
-    font-size: 14px;
-  }
-  header .cta {
-    padding: 10px 15px;
-    font-size: 14px;
-    display:block;
-    border-radius:20px;
-    margin:15px auto 0;
-    box-sizing: border-box;
-    max-width: 100%;
-  }
-  nav {
-    text-align: center;
-    padding: 10px 0;
-  }
-  nav a {
-    display: block;
-    margin: 8px 0;
-  }
-  section {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-  .services {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .gallery {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .rentals li {
-    font-size: 16px;
-    padding: 12px;
-  }
-  .calculator, .quote {
-    width: 100%;
-    padding: 15px;
-  }
-  button, .cta, input, select, textarea {
-    width: 100%;
-    font-size: 16px;
-  }
+#lightbox {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+#lightbox-close {
+  position: absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
+
+/* Mobile adjustments */
+@media (max-width:768px){
+  header { padding:60px 20px; }
+  header h1 { font-size:28px; }
+  header p { font-size:14px; }
+  header .cta { padding:10px 15px; font-size:14px; display:block; margin:15px auto 0; max-width:100%; }
+  nav a { display:block; margin:8px 0; }
+  section { padding-left:5%; padding-right:5%; }
+  .services, .gallery { grid-template-columns:1fr; gap:15px; }
+  .rentals li { font-size:16px; padding:12px; }
+  button, .cta, input, select, textarea { width:100%; font-size:16px; }
 }
 </style>
 </head>
@@ -289,49 +228,33 @@ footer {
 <section id="services">
 <h2>Our Services</h2>
 <div class="services">
-<div class="card">
-<h3>Balloon Garlands</h3>
-<p>Custom balloon garlands for birthdays, showers, and events.</p>
-<p><b>Starting $160</b></p>
-</div>
-<div class="card">
-<h3>Table Designs</h3>
-<p>Beautiful themed tables with decorations.</p>
-<p><b>Starting $25 per table</b></p>
-</div>
-<div class="card">
-<h3>Backdrops</h3>
-<p>Photo backdrops with balloons and decor.</p>
-<p><b>Starting $220</b></p>
-</div>
+<div class="card" data-count="120"><h3>Balloon Garlands</h3><p>Custom balloon garlands.</p></div>
+<div class="card" data-count="80"><h3>Table Designs</h3><p>Themed table setups.</p></div>
+<div class="card" data-count="150"><h3>Backdrops</h3><p>Photo backdrops with decor.</p></div>
 </div>
 </section>
 
 <section id="gallery">
 <h2>Past Work</h2>
 <div class="gallery">
-<img src="https://image2url.com/r2/default/images/1773699632863-a68571e2-d104-4ec9-bfa7-92f82ee3f8b4.jpeg" alt="image" />
-<img src="https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg" alt="image" />
-<img src="https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg" alt="image" />
-<img src="https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png" alt="image" />
-<img src="https://image2url.com/r2/default/images/1773700520868-3ca00f2a-857f-4a6e-9fef-d3febfa8ee2a.png" alt="image" />
-<img src="https://image2url.com/r2/default/images/1773700556346-f8d777fc-603c-42c5-8263-d85f0ff8a55e.png" alt="image" />
-<img src="https://image2url.com/r2/default/images/1773701785734-bc684097-c1e8-40b7-b3dc-72bac0176c69.jpeg" alt="image" />
-<img src="https://image2url.com/r2/default/images/1773701868486-66274001-e5ee-4fd7-80a7-87c2157ea2ff.jpeg" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773699632863-a68571e2-d104-4ec9-bfa7-92f82ee3f8b4.jpeg" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png" alt="image" />
 </div>
 </section>
 
 <section id="rentals">
 <h2>Rental Items</h2>
 <ul class="rentals">
-<li>Throne Chair – $150</li>
-<li>Cylinder Stands (Set of 3) – $50</li>
-<li>Backdrop Stand – $80</li>
-<li>Table Cloth – (Each) - $7</li>
-<li>Chair Cover – (Each) - $1.50</li>
-<li>Table Runner – (Each) - $1.00</li>
-<li>Chair Sashes – (Each) - $0.50</li>
-<li>Robot Suit – (Hourly) - $450</li>
+<li data-count="150">Throne Chair – $150</li>
+<li data-count="50">Cylinder Stands (Set of 3) – $50</li>
+<li data-count="80">Backdrop Stand – $80</li>
+<li data-count="7">Table Cloth – $7</li>
+<li data-count="1.5">Chair Cover – $1.50</li>
+<li data-count="1">Table Runner – $1.00</li>
+<li data-count="0.5">Chair Sashes – $0.50</li>
+<li data-count="450">Robot Suit – $450</li>
 </ul>
 </section>
 
@@ -374,66 +297,107 @@ footer {
 <p>Balloon Decor & Event Styling</p>
 </footer>
 
-<!-- Lightbox overlay -->
-<div id="lightbox" style="display:none;">
+<!-- Lightbox -->
+<div id="lightbox">
   <span id="lightbox-close">&times;</span>
   <img id="lightbox-img" src="">
 </div>
 
 <script>
-window.addEventListener('DOMContentLoaded', () => {
+// =====================
+// Estimate Calculator + Confetti
+// =====================
+function calculate(){
+  const balloons = parseInt(document.getElementById("balloons").value) || 0;
+  const table = parseInt(document.getElementById("table").value) || 0;
+  const backdrop = parseInt(document.getElementById("backdrop").value) || 0;
+  const total = balloons + table + backdrop;
+  const result = document.getElementById("result");
+  let current = 0;
+  let step = Math.ceil(total / 20);
+  const interval = setInterval(()=>{
+    current+=step;
+    if(current>=total) current=total, clearInterval(interval);
+    result.innerText="$"+current;
+  },20);
+  launchConfetti();
+}
 
-  // =======================
-  // Price calculator
-  // =======================
-  function calculate() {
-    let balloons = parseInt(document.getElementById("balloons").value) || 0;
-    let table = parseInt(document.getElementById("table").value) || 0;
-    let backdrop = parseInt(document.getElementById("backdrop").value) || 0;
-    let total = balloons + table + backdrop;
+// =====================
+// Confetti
+// =====================
+function launchConfetti(){
+  const duration = 1500;
+  const end = Date.now() + duration;
+  (function frame(){
+    const colors = ['#ff6fb7','#ffa3d7','#ffedcc','#ffcc66'];
+    const confetti = document.createElement('div');
+    confetti.style.position='fixed';
+    confetti.style.width='8px';
+    confetti.style.height='8px';
+    confetti.style.background=colors[Math.floor(Math.random()*colors.length)];
+    confetti.style.left=Math.random()*window.innerWidth+'px';
+    confetti.style.top='-10px';
+    confetti.style.opacity='0.8';
+    confetti.style.zIndex=9999;
+    confetti.style.borderRadius='50%';
+    document.body.appendChild(confetti);
+    const fall = setInterval(()=>{
+      const top=parseFloat(confetti.style.top);
+      if(top>window.innerHeight){
+        clearInterval(fall);
+        document.body.removeChild(confetti);
+      }else confetti.style.top=top+5+'px';
+    },20);
+    if(Date.now()<end) requestAnimationFrame(frame);
+  })();
+}
 
-    const result = document.getElementById("result");
-    let current = 0;
-    let step = Math.ceil(total / 20);
-    const interval = setInterval(() => {
-      current += step;
-      if (current >= total) current = total, clearInterval(interval);
-      result.innerText = "$" + current;
-    }, 20);
-  }
+// =====================
+// Lightbox + Swipe
+// =====================
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
+let currentIndex=0;
 
-  document.querySelector('button[onclick="calculate()"]').addEventListener('click', calculate);
+function openLightbox(index){
+  currentIndex=index;
+  lightbox.style.display='flex';
+  lightboxImg.src=galleryImages[currentIndex].src;
+}
 
-  // =======================
-  // Lightbox functionality
-  // =======================
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxClose = document.getElementById('lightbox-close');
+function changeLightbox(step){
+  currentIndex=(currentIndex+step+galleryImages.length)%galleryImages.length;
+  lightboxImg.src=galleryImages[currentIndex].src;
+}
 
-  document.querySelectorAll('.gallery img').forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
-    });
+galleryImages.forEach((img,idx)=>img.addEventListener('click',()=>openLightbox(idx)));
+lightboxClose.addEventListener('click',()=>lightbox.style.display='none');
+lightbox.addEventListener('click',e=>{if(e.target===lightbox) lightbox.style.display='none';});
+
+// Swipe gestures for mobile
+let startX=0;
+lightboxImg.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
+lightboxImg.addEventListener('touchend',e=>{
+  let diffX=e.changedTouches[0].clientX-startX;
+  if(diffX>50) changeLightbox(-1);
+  if(diffX<-50) changeLightbox(1);
+});
+
+// =====================
+// Lazy load (modern browsers already handle <img loading="lazy">)
+
+// =====================
+// Smooth scroll nav
+document.querySelectorAll('nav a').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(link.getAttribute('href'));
+    target.scrollIntoView({behavior:'smooth', block:'start'});
   });
-
-  lightboxClose.addEventListener('click', () => { lightbox.style.display = 'none'; });
-  lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.style.display = 'none'; });
-
-  // =======================
-  // Smooth scrolling for nav links
-  // =======================
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if(target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
 });
 </script>
-
 </body>
 </html>
