@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Eventos con Encanto</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 
 body{
@@ -159,6 +161,60 @@ color:white;
 text-align:center;
 padding:25px;
 margin-top:50px;
+}
+
+  /* === Mobile-Friendly Adjustments === */
+@media (max-width: 768px) {
+
+  /* Shrink header padding and font size */
+  header {
+    padding: 60px 20px;
+  }
+  header h1 {
+    font-size: 32px;
+  }
+  header p {
+    font-size: 16px;
+  }
+
+  /* Navigation links stack vertically */
+  nav {
+    text-align: center;
+    padding: 10px 0;
+  }
+  nav a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  /* Services grid stack */
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  /* Gallery grid stack */
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  /* Rentals list spacing */
+  .rentals li {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  /* Calculator & quote sections full width */
+  .calculator, .quote {
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* Buttons full width */
+  button, .cta {
+    width: 100%;
+    font-size: 16px;
+  }
+
 }
 
 </style>
