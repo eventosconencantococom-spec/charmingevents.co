@@ -10,11 +10,40 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
-}
-
-body {
   margin:0;
   font-family:'Dancing Script', cursive;
+}
+
+/* ===== Intro Overlay ===== */
+#site-intro {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: linear-gradient(135deg,#ff6fb7,#ffa3d7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  color:white;
+  font-size:36px;
+  z-index:99999;
+  text-align:center;
+  animation: fadeOut 1s ease forwards;
+  animation-delay: 3s;
+}
+
+#site-intro p {
+  font-size:20px;
+  margin-top:15px;
+}
+
+/* Animate intro fade */
+@keyframes fadeOut {
+  to { opacity:0; visibility:hidden; }
+}
+
+/* ===== Main Site Styles ===== */
+body {
   background:#fafafa;
   color:#333;
 }
@@ -38,9 +67,8 @@ header p { font-size:20px; }
   font-weight:bold;
   display:inline-block;
   margin-top:20px;
-  transition: transform 0.2s ease, padding 0.2s ease, font-size 0.2s ease;
+  transition: transform 0.2s ease;
 }
-
 .cta:hover { transform: scale(1.05); }
 
 nav {
@@ -51,7 +79,6 @@ nav {
   top:0;
   z-index: 1000;
 }
-
 nav a {
   color:white;
   margin:15px;
@@ -59,6 +86,7 @@ nav a {
   font-weight:bold;
 }
 
+/* ===== Sections ===== */
 section {
   padding:60px 10%;
   width:100%;
@@ -71,13 +99,7 @@ section {
 
 h2 { text-align:center; margin-bottom:40px; }
 
-.services {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-  width: 100%;
-}
-
+.services { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; width: 100%; }
 .card {
   background:white;
   border-radius:12px;
@@ -87,13 +109,9 @@ h2 { text-align:center; margin-bottom:40px; }
   transition: all 0.3s ease;
   cursor: pointer;
 }
+.card:hover { transform: translateY(-8px); box-shadow:0 12px 25px rgba(0,0,0,0.2); }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-}
-
-/* Pinterest-style Masonry Gallery */
+/* ===== Gallery ===== */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -106,21 +124,17 @@ h2 { text-align:center; margin-bottom:40px; }
   margin: 0 auto;
   padding: 0;
 }
-
 .gallery img {
   width: 100%;
   border-radius: 10px;
   cursor: pointer;
   display: block;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
+.gallery img:hover { transform: scale(1.05); }
 
-.rentals {
-  max-width:600px;
-  margin:auto;
-  width: 100%;
-}
-
+/* Rentals */
+.rentals { max-width:600px; margin:auto; width: 100%; }
 .rentals li {
   background:white;
   margin:10px 0;
@@ -129,12 +143,9 @@ h2 { text-align:center; margin-bottom:40px; }
   box-shadow:0 3px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
+.rentals li:hover { background:#ffe6f2; transform: translateX(3px); }
 
-.rentals li:hover {
-  background:#ffe6f2;
-  transform: translateX(3px);
-}
-
+/* Calculator & Quote */
 .calculator, .quote {
   max-width:500px;
   width: 100%;
@@ -144,101 +155,35 @@ h2 { text-align:center; margin-bottom:40px; }
   border-radius:12px;
   box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
+input, select, textarea, button { width: 100%; box-sizing: border-box; padding:12px; margin:10px 0; border-radius:6px; border:1px solid #ccc; }
+button { background:#ff6fb7; color:white; border:none; padding:14px; border-radius:8px; font-size:16px; cursor:pointer; }
+.result { font-size:22px; text-align:center; margin-top:20px; font-weight:bold; }
 
-input, select, textarea, button {
-  width: 100%;
-  box-sizing: border-box;
-  padding:12px;
-  margin:10px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
-
-button {
-  background:#ff6fb7;
-  color:white;
-  border:none;
-  padding:14px;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.result {
-  font-size:22px;
-  text-align:center;
-  margin-top:20px;
-  font-weight:bold;
-}
-
-.whatsapp {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:white;
-  padding:15px 20px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-footer {
-  background:#333;
-  color:white;
-  text-align:center;
-  padding:25px;
-  margin-top:50px;
-}
+footer { background:#333; color:white; text-align:center; padding:25px; margin-top:50px; }
 
 /* Lightbox */
 #lightbox {
-  position: fixed;
-  top:0; left:0;
-  width: 100%; height: 100%;
+  position: fixed; top:0; left:0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  display: none; justify-content: center; align-items: center; z-index: 9999;
 }
+#lightbox img { max-width: 90%; max-height: 90%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+#lightbox-close { position:absolute; top:20px; right:30px; font-size:40px; color:white; cursor:pointer; }
 
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-#lightbox-close {
-  position: absolute;
-  top:20px;
-  right:30px;
-  font-size:40px;
-  color:white;
-  cursor:pointer;
-}
-
-/* Mobile adjustments */
+/* Mobile */
 @media (max-width:768px){
   header { padding:60px 15px; }
   header h1 { font-size:28px; }
   header p { font-size:14px; }
   header .cta { padding:10px 15px; font-size:14px; display:block; margin:15px auto 0; max-width:90%; text-align:center; }
-
   nav a { display:block; margin:8px 0; }
-
-  section { padding-left:5%; padding-right:5%; box-sizing:border-box; }
-
+  section { padding-left:5%; padding-right:5%; }
   .services { grid-template-columns:1fr; gap:15px; width:100%; }
-  .rentals { width:100%; padding:0; box-sizing:border-box; }
+  .rentals { width:100%; padding:0; }
   .rentals li { font-size:16px; padding:12px; }
-
-  .calculator, .quote { width:100%; padding:15px; box-sizing:border-box; max-width:100%; }
-
-  button, .cta, input, select, textarea { width:100%; font-size:16px; box-sizing:border-box; }
-
-  .gallery { grid-template-columns: 1fr; gap:15px; padding:0; }
+  .calculator, .quote { width:100%; padding:15px; }
+  button, .cta, input, select, textarea { width:100%; font-size:16px; }
+  .gallery { grid-template-columns:1fr; gap:15px; padding:0; }
 }
 
 /* Quantity spinner */
@@ -249,6 +194,12 @@ footer {
 </head>
 
 <body>
+
+<!-- ===== Intro Overlay ===== -->
+<div id="site-intro">
+  <h1>Eventos con Encanto</h1>
+  <p>Balloon Decor • Table Designs • Party Rentals</p>
+</div>
 
 <header>
 <h1>Eventos con Encanto</h1>
@@ -280,10 +231,6 @@ footer {
 <img loading="lazy" src="https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg" alt="image" />
 <img loading="lazy" src="https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg" alt="image" />
 <img loading="lazy" src="https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773700520868-3ca00f2a-857f-4a6e-9fef-d3febfa8ee2a.png" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773700556346-f8d777fc-603c-42c5-8263-d85f0ff8a55e.png" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773701785734-bc684097-c1e8-40b7-b3dc-72bac0176c69.jpeg" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773701868486-66274001-e5ee-4fd7-80a7-87c2157ea2ff.jpeg" alt="image" />
 </div>
 </section>
 
@@ -293,11 +240,11 @@ footer {
 <li>Throne Chair – $150</li>
 <li>Cylinder Stands (Set of 3) – $50</li>
 <li>Backdrop Stand – $80</li>
-<li>Table Cloth – $7 (Each)</li>
-<li>Chair Cover – $1.50 (Each)</li>
-<li>Table Runner – $1.00 (Each)</li>
-<li>Chair Sashes – $0.50 (Each)</li>
-<li>Robot Suit – $450 (Each)</li>
+<li>Table Cloth – $7</li>
+<li>Chair Cover – $1.50</li>
+<li>Table Runner – $1.00</li>
+<li>Chair Sashes – $0.50</li>
+<li>Robot Suit – $450</li>
 </ul>
 </section>
 
@@ -339,7 +286,7 @@ footer {
 <section id="quote">
 <h2>Request a Quote</h2>
 <div class="quote">
-<p>Click the button below to fill out our quote request form. All submissions will be sent directly to our email via Google Forms.</p>
+<p>Click the button below to fill out our quote request form.</p>
 <a href="https://docs.google.com/forms/d/e/1FAIpQLSclf0RmXcOxY3XP06Laudp9lQ1S6mItcl8eBEmUbs2CUbOMZA/viewform?usp=header" 
    target="_blank"
    style="display:inline-block; text-align:center; background:#ff6fb7; color:white; padding:14px 25px; border-radius:8px; text-decoration:none; font-weight:bold;">
@@ -359,7 +306,13 @@ footer {
 </div>
 
 <script>
-// ===== Calculator + Confetti =====
+// ===== Intro fade after 3s =====
+window.addEventListener('load', ()=>{
+  const intro = document.getElementById('site-intro');
+  setTimeout(()=>intro.style.display='none', 4000); // hides after animation
+});
+
+// ===== Calculator =====
 function calculate(){
   const balloons = parseInt(document.getElementById("balloons").value)||0;
   const tablePrice = parseInt(document.getElementById("table").value)||0;
@@ -374,7 +327,6 @@ function calculate(){
     if(current>=total) current=total, clearInterval(interval);
     result.innerText="$"+current;
   },20);
-  launchConfetti();
 }
 
 // ===== Quantity spinner =====
@@ -386,33 +338,7 @@ function changeQty(amount){
   input.value=val;
 }
 
-// ===== Confetti =====
-function launchConfetti(){
-  const duration=1500;
-  const end=Date.now()+duration;
-  (function frame(){
-    const colors=['#ff6fb7','#ffa3d7','#ffedcc','#ffcc66'];
-    const confetti=document.createElement('div');
-    confetti.style.position='fixed';
-    confetti.style.width='8px';
-    confetti.style.height='8px';
-    confetti.style.background=colors[Math.floor(Math.random()*colors.length)];
-    confetti.style.left=Math.random()*window.innerWidth+'px';
-    confetti.style.top='-10px';
-    confetti.style.opacity='0.8';
-    confetti.style.zIndex=9999;
-    confetti.style.borderRadius='50%';
-    document.body.appendChild(confetti);
-    const fall=setInterval(()=>{
-      const top=parseFloat(confetti.style.top);
-      if(top>window.innerHeight){ clearInterval(fall); document.body.removeChild(confetti);}
-      else confetti.style.top=top+5+'px';
-    },20);
-    if(Date.now()<end) requestAnimationFrame(frame);
-  })();
-}
-
-// ===== Lightbox + Swipe =====
+// ===== Lightbox =====
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
@@ -424,16 +350,15 @@ function openLightbox(index){
   lightbox.style.display='flex';
   lightboxImg.src=galleryImages[currentIndex].src;
 }
-
 function changeLightbox(step){
   currentIndex=(currentIndex+step+galleryImages.length)%galleryImages.length;
   lightboxImg.src=galleryImages[currentIndex].src;
 }
-
 galleryImages.forEach((img,idx)=>img.addEventListener('click',()=>openLightbox(idx)));
 lightboxClose.addEventListener('click',()=>lightbox.style.display='none');
 lightbox.addEventListener('click',e=>{if(e.target===lightbox) lightbox.style.display='none';});
 
+// Touch swipe
 let startX=0;
 lightboxImg.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
 lightboxImg.addEventListener('touchend',e=>{
@@ -442,7 +367,7 @@ lightboxImg.addEventListener('touchend',e=>{
   if(diffX<-50) changeLightbox(1);
 });
 
-// Masonry resize
+// Masonry resizing
 function resizeMasonryItem(img){
   const rowHeight = parseInt(getComputedStyle(img.parentElement).getPropertyValue('grid-auto-rows'));
   const rowGap = parseInt(getComputedStyle(img.parentElement).getPropertyValue('gap'));
@@ -456,7 +381,7 @@ galleryImages.forEach(img=>{
 });
 window.addEventListener('resize', ()=>galleryImages.forEach(img=>resizeMasonryItem(img)));
 
-// Smooth scroll nav
+// Smooth scroll
 document.querySelectorAll('nav a').forEach(link=>{
   link.addEventListener('click',e=>{
     e.preventDefault();
@@ -465,5 +390,6 @@ document.querySelectorAll('nav a').forEach(link=>{
   });
 });
 </script>
+
 </body>
 </html>
