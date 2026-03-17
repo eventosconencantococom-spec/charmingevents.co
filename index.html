@@ -486,6 +486,11 @@ let total = balloons + table + backdrop
     result.innerText = "$" + current
   }, 20)
 }
+
+
+document.getElementById("result").innerText = "$" + total
+
+}
   // Lightbox functionality
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
@@ -506,31 +511,6 @@ lightbox.addEventListener('click', e => {
   if(e.target === lightbox) lightbox.style.display = 'none';
 });
 
-
-
-// Lightbox functionality
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
-
-document.querySelectorAll('.gallery img').forEach(img => {
-  img.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = img.src;
-  });
-});
-
-lightboxClose.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
-
-lightbox.addEventListener('click', e => {
-  if(e.target === lightbox) lightbox.style.display = 'none';
-});
-
-document.getElementById("result").innerText = "$" + total
-
-}
 
 </script>
 <!-- Lightbox overlay -->
