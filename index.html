@@ -93,7 +93,7 @@ h2 { text-align:center; margin-bottom:40px; }
   box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
-/* ===== Pinterest-style Masonry Gallery ===== */
+/* Pinterest-style Masonry Gallery */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -114,9 +114,6 @@ h2 { text-align:center; margin-bottom:40px; }
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Responsive Masonry handled dynamically with JS */
-
-/* Rentals */
 .rentals {
   max-width:600px;
   margin:auto;
@@ -137,7 +134,6 @@ h2 { text-align:center; margin-bottom:40px; }
   transform: translateX(3px);
 }
 
-/* Calculator & quote */
 .calculator, .quote {
   max-width:500px;
   width: 100%;
@@ -146,6 +142,25 @@ h2 { text-align:center; margin-bottom:40px; }
   padding:25px;
   border-radius:12px;
   box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+input, select, textarea, button {
+  width: 100%;
+  box-sizing: border-box;
+  padding:12px;
+  margin:10px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+button {
+  background:#ff6fb7;
+  color:white;
+  border:none;
+  padding:14px;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
 }
 
 .result {
@@ -205,15 +220,24 @@ footer {
 
 /* Mobile adjustments */
 @media (max-width:768px){
-  header { padding:60px 20px; }
+  header { padding:60px 15px; }
   header h1 { font-size:28px; }
   header p { font-size:14px; }
-  header .cta { padding:10px 15px; font-size:14px; display:block; margin:15px auto 0; max-width:100%; }
+  header .cta { padding:10px 15px; font-size:14px; display:block; margin:15px auto 0; max-width:90%; text-align:center; }
+
   nav a { display:block; margin:8px 0; }
-  section { padding-left:5%; padding-right:5%; }
-  .services { grid-template-columns:1fr; gap:15px; }
+
+  section { padding-left:5%; padding-right:5%; box-sizing:border-box; }
+
+  .services { grid-template-columns:1fr; gap:15px; width:100%; }
+  .rentals { width:100%; padding:0; box-sizing:border-box; }
   .rentals li { font-size:16px; padding:12px; }
-  button, .cta, input, select, textarea { width:100%; font-size:16px; }
+
+  .calculator, .quote { width:100%; padding:15px; box-sizing:border-box; max-width:100%; }
+
+  button, .cta, input, select, textarea { width:100%; font-size:16px; box-sizing:border-box; }
+
+  .gallery { grid-template-columns: 1fr; gap:15px; padding:0; }
 }
 </style>
 </head>
@@ -263,10 +287,10 @@ footer {
 <li>Throne Chair – $150</li>
 <li>Cylinder Stands (Set of 3) – $50</li>
 <li>Backdrop Stand – $80</li>
-<li>Table Cloth – $7</li>
-<li>Chair Cover – $1.50</li>
-<li>Table Runner – $1.00</li>
-<li>Chair Sashes – $0.50</li>
+<li>Table Cloth – $7 (Each)</li>
+<li>Chair Cover – $1.50 (Each)</li>
+<li>Table Runner – $1.00 (Each)</li>
+<li>Chair Sashes – $0.50 (Each)</li>
 <li>Robot Suit – $450</li>
 </ul>
 </section>
@@ -274,20 +298,29 @@ footer {
 <section id="calculator">
 <h2>Price Estimate</h2>
 <div class="calculator">
+<label for="balloons">Balloon Garland:</label>
 <select id="balloons">
 <option value="0">No Balloon Garland</option>
 <option value="160">Balloon Garland ($160)</option>
 <option value="250">Large Garland ($250)</option>
 </select>
+
+<label for="table">Table Type:</label>
 <select id="table">
 <option value="0">No Table Design</option>
-<option value="25">Basic Table ($25)</option>
-<option value="35">Premium Table ($35)</option>
+<option value="25">Basic Table ($25 each)</option>
+<option value="35">Premium Table ($35 each)</option>
 </select>
+
+<label for="tableQty">Number of Tables:</label>
+<input type="number" id="tableQty" min="0" value="0">
+
+<label for="backdrop">Backdrop:</label>
 <select id="backdrop">
 <option value="0">No Backdrop</option>
 <option value="160">Backdrop ($160)</option>
 </select>
+
 <button onclick="calculate()">Calculate Estimate</button>
 <div class="result" id="result">$0</div>
 </div>
@@ -317,18 +350,17 @@ footer {
 </div>
 
 <script>
-// =====================
-// Calculator + Confetti
-// =====================
+// ===== Calculator + Confetti =====
 function calculate(){
-  const balloons = parseInt(document.getElementById("balloons").value) || 0;
-  const table = parseInt(document.getElementById("table").value) || 0;
-  const backdrop = parseInt(document.getElementById("backdrop").value) || 0;
-  const total = balloons + table + backdrop;
+  const balloons = parseInt(document.getElementById("balloons").value)||0;
+  const tablePrice = parseInt(document.getElementById("table").value)||0;
+  const tableQty = parseInt(document.getElementById("tableQty").value)||0;
+  const backdrop = parseInt(document.getElementById("backdrop").value)||0;
+  const total = balloons + (tablePrice*tableQty) + backdrop;
   const result = document.getElementById("result");
-  let current = 0;
-  let step = Math.ceil(total / 20);
-  const interval = setInterval(()=>{
+  let current=0;
+  let step=Math.ceil(total/20);
+  const interval=setInterval(()=>{
     current+=step;
     if(current>=total) current=total, clearInterval(interval);
     result.innerText="$"+current;
@@ -336,15 +368,13 @@ function calculate(){
   launchConfetti();
 }
 
-// =====================
-// Confetti
-// =====================
+// ===== Confetti =====
 function launchConfetti(){
-  const duration = 1500;
-  const end = Date.now() + duration;
+  const duration=1500;
+  const end=Date.now()+duration;
   (function frame(){
-    const colors = ['#ff6fb7','#ffa3d7','#ffedcc','#ffcc66'];
-    const confetti = document.createElement('div');
+    const colors=['#ff6fb7','#ffa3d7','#ffedcc','#ffcc66'];
+    const confetti=document.createElement('div');
     confetti.style.position='fixed';
     confetti.style.width='8px';
     confetti.style.height='8px';
@@ -355,20 +385,16 @@ function launchConfetti(){
     confetti.style.zIndex=9999;
     confetti.style.borderRadius='50%';
     document.body.appendChild(confetti);
-    const fall = setInterval(()=>{
+    const fall=setInterval(()=>{
       const top=parseFloat(confetti.style.top);
-      if(top>window.innerHeight){
-        clearInterval(fall);
-        document.body.removeChild(confetti);
-      }else confetti.style.top=top+5+'px';
+      if(top>window.innerHeight){ clearInterval(fall); document.body.removeChild(confetti);}
+      else confetti.style.top=top+5+'px';
     },20);
     if(Date.now()<end) requestAnimationFrame(frame);
   })();
 }
 
-// =====================
-// Lightbox + Swipe
-// =====================
+// ===== Lightbox + Swipe =====
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
@@ -390,7 +416,6 @@ galleryImages.forEach((img,idx)=>img.addEventListener('click',()=>openLightbox(i
 lightboxClose.addEventListener('click',()=>lightbox.style.display='none');
 lightbox.addEventListener('click',e=>{if(e.target===lightbox) lightbox.style.display='none';});
 
-// Swipe gestures for mobile
 let startX=0;
 lightboxImg.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
 lightboxImg.addEventListener('touchend',e=>{
@@ -408,15 +433,13 @@ document.querySelectorAll('nav a').forEach(link=>{
   });
 });
 
-// =====================
-// Masonry image span adjustment
-// =====================
+// Masonry layout adjustment
 function resizeMasonryItem(img){
   const rowHeight = parseInt(getComputedStyle(img.parentElement).getPropertyValue('grid-auto-rows'));
   const rowGap = parseInt(getComputedStyle(img.parentElement).getPropertyValue('gap'));
   const height = img.getBoundingClientRect().height;
   const rowSpan = Math.ceil((height + rowGap) / (rowHeight + rowGap));
-  img.style.gridRowEnd = "span " + rowSpan;
+  img.style.gridRowEnd = "span "+rowSpan;
 }
 
 const galleryImagesMasonry = document.querySelectorAll('.gallery img');
@@ -429,5 +452,6 @@ window.addEventListener('resize', ()=>{
   galleryImagesMasonry.forEach(img=>resizeMasonryItem(img));
 });
 </script>
+
 </body>
 </html>
