@@ -3,395 +3,404 @@
 <head>
 <meta charset="UTF-8">
 <title>Eventos con Encanto</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
 html, body {
-  width: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  margin:0;
-  font-family:'Dancing Script', cursive;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-/* ===== Intro Overlay ===== */
-#site-intro {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: linear-gradient(135deg,#ff6fb7,#ffa3d7);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  color:white;
-  font-size:36px;
-  z-index:99999;
-  text-align:center;
-  animation: fadeOut 1s ease forwards;
-  animation-delay: 3s;
+body{
+    margin:0;
+    font-family:'Dancing Script', cursive;
+    background:#fafafa;
+    color:#333;
 }
 
-#site-intro p {
-  font-size:20px;
-  margin-top:15px;
+header{
+    background:linear-gradient(135deg,#ff6fb7,#ffa3d7);
+    color:white;
+    padding:100px 20px;
+    text-align:center;
 }
 
-/* Animate intro fade */
-@keyframes fadeOut {
-  to { opacity:0; visibility:hidden; }
+header h1{
+    font-size:48px;
+    margin:0;
 }
 
-/* ===== Main Site Styles ===== */
-body {
-  background:#fafafa;
-  color:#333;
+header p{
+    font-size:20px;
 }
 
-header {
-  background:linear-gradient(135deg,#ff6fb7,#ffa3d7);
-  color:white;
-  padding:100px 20px;
-  text-align:center;
+.cta{
+    background:white;
+    color:#ff6fb7;
+    padding:15px 30px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    display:inline-block;
+    margin-top:20px;
 }
 
-header h1 { font-size:48px; margin:0; }
-header p { font-size:20px; }
-
-.cta {
-  background:white;
-  color:#ff6fb7;
-  padding:15px 30px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
-  display:inline-block;
-  margin-top:20px;
-  transition: transform 0.2s ease;
-}
-.cta:hover { transform: scale(1.05); }
-
-nav {
-  background:#333;
-  padding:12px;
-  text-align:center;
-  position: sticky;
-  top:0;
-  z-index: 1000;
-}
-nav a {
-  color:white;
-  margin:15px;
-  text-decoration:none;
-  font-weight:bold;
+nav{
+    background:#333;
+    padding:12px;
+    text-align:center;
 }
 
-/* ===== Sections ===== */
-section {
-  padding:60px 10%;
-  width:100%;
-  min-width:300px;
-  box-sizing:border-box;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
+nav a{
+    color:white;
+    margin:15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-h2 { text-align:center; margin-bottom:40px; }
-
-.services { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; width: 100%; }
-.card {
-  background:white;
-  border-radius:12px;
-  padding:25px;
-  box-shadow:0 6px 15px rgba(0,0,0,0.1);
-  text-align:center;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-.card:hover { transform: translateY(-8px); box-shadow:0 12px 25px rgba(0,0,0,0.2); }
-
-/* ===== Gallery ===== */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 10px;
-  grid-auto-flow: dense;
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 0;
-}
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  display: block;
-  transition: transform 0.3s ease;
-}
-.gallery img:hover { transform: scale(1.05); }
-
-/* Rentals */
-.rentals { max-width:600px; margin:auto; width: 100%; }
-.rentals li {
-  background:white;
-  margin:10px 0;
-  padding:15px;
-  border-radius:8px;
-  box-shadow:0 3px 8px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-}
-.rentals li:hover { background:#ffe6f2; transform: translateX(3px); }
-
-/* Calculator & Quote */
-.calculator, .quote {
-  max-width:500px;
-  width: 100%;
-  margin:auto;
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-input, select, textarea, button { width: 100%; box-sizing: border-box; padding:12px; margin:10px 0; border-radius:6px; border:1px solid #ccc; }
-button { background:#ff6fb7; color:white; border:none; padding:14px; border-radius:8px; font-size:16px; cursor:pointer; }
-.result { font-size:22px; text-align:center; margin-top:20px; font-weight:bold; }
-
-footer { background:#333; color:white; text-align:center; padding:25px; margin-top:50px; }
-
-/* Lightbox */
-#lightbox {
-  position: fixed; top:0; left:0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: none; justify-content: center; align-items: center; z-index: 9999;
-}
-#lightbox img { max-width: 90%; max-height: 90%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
-#lightbox-close { position:absolute; top:20px; right:30px; font-size:40px; color:white; cursor:pointer; }
-
-/* Mobile */
-@media (max-width:768px){
-  header { padding:60px 15px; }
-  header h1 { font-size:28px; }
-  header p { font-size:14px; }
-  header .cta { padding:10px 15px; font-size:14px; display:block; margin:15px auto 0; max-width:90%; text-align:center; }
-  nav a { display:block; margin:8px 0; }
-  section { padding-left:5%; padding-right:5%; }
-  .services { grid-template-columns:1fr; gap:15px; width:100%; }
-  .rentals { width:100%; padding:0; }
-  .rentals li { font-size:16px; padding:12px; }
-  .calculator, .quote { width:100%; padding:15px; }
-  button, .cta, input, select, textarea { width:100%; font-size:16px; }
-  .gallery { grid-template-columns:1fr; gap:15px; padding:0; }
+section{
+    padding:60px 10%;
+    width:100%;
+    min-width:300px;
+    box-sizing:border-box;
 }
 
-/* Quantity spinner */
-.qty-container { display: flex; justify-content: center; align-items: center; margin-top:10px; }
-.qty-container button { width:35px; padding:5px; font-size:16px; margin:0 5px; }
-.qty-container input { width:60px; text-align:center; margin:0; }
+h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:25px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.gallery{
+    column-count: 3;
+    column-gap: 15px;
+}
+
+.gallery img{
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius:10px;
+    display: block;
+}
+
+.rentals{
+    max-width:600px;
+    margin:auto;
+}
+
+.rentals li{
+    background:white;
+    margin:10px 0;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.rentals li:hover {
+    background:#ffe6f2;
+    transform: translateX(3px);
+    transition: all 0.3s ease;
+}
+
+.quote{
+    max-width:500px;
+    margin:auto;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:15px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    background:#ff6fb7;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    width:100%;
+}
+
+.calculator{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    max-width:500px;
+    margin:auto;
+}
+
+.result{
+    font-size:22px;
+    text-align:center;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px 20px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
+
+/* === Mobile-Friendly Adjustments === */
+@media (max-width: 768px) {
+
+    /* Shrink header */
+    header {
+        padding: 60px 20px;
+    }
+    header h1 {
+        font-size: 28px;
+    }
+    header p {
+        font-size: 14px;
+    }
+
+    header .cta {
+        padding: 10px 15px;
+        font-size: 14px;
+        display:block;
+        border-radius:20px;
+        margin:15px auto 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Navigation links stack */
+    nav {
+        text-align: center;
+        padding: 10px 0;
+    }
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    /* Services grid stack */
+    .services {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Gallery stack like Pinterest */
+    .gallery {
+        column-count: 2;
+        column-gap: 10px;
+    }
+
+    /* Rentals list spacing */
+    .rentals {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .rentals li {
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Calculator & quote sections full width */
+    .calculator, .quote {
+        width: 100%;
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    /* Buttons full width */
+    button, .cta, input, select, textarea {
+        width: 100%;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- ===== Intro Overlay ===== -->
-<div id="site-intro">
-  <h1>Eventos con Encanto</h1>
-  <p>Balloon Decor • Table Designs • Party Rentals</p>
-</div>
-
 <header>
-<h1>Eventos con Encanto</h1>
-<p>Balloon Decor • Table Designs • Party Rentals</p>
-<a class="cta" href="#quote">Request a Quote</a>
+    <h1>Eventos con Encanto</h1>
+    <p>Balloon Decor • Table Designs • Party Rentals</p>
+    <a class="cta" href="#quote">Request a Quote</a>
 </header>
 
 <nav>
-<a href="#services">Services</a>
-<a href="#gallery">Gallery</a>
-<a href="#rentals">Rentals</a>
-<a href="#calculator">Estimate</a>
-<a href="#quote">Quote</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#rentals">Rentals</a>
+    <a href="#calculator">Estimate</a>
+    <a href="#quote">Quote</a>
 </nav>
 
 <section id="services">
-<h2>Our Services</h2>
-<div class="services">
-<div class="card"><h3>Balloon Garlands</h3><p>Custom balloon garlands.</p></div>
-<div class="card"><h3>Table Designs</h3><p>Themed table setups.</p></div>
-<div class="card"><h3>Backdrops</h3><p>Photo backdrops with decor.</p></div>
-</div>
+    <h2>Our Services</h2>
+    <div class="services">
+        <div class="card">
+            <h3>Balloon Garlands</h3>
+            <p>Custom balloon garlands for birthdays, showers, and events.</p>
+            <p><b>Starting $160</b></p>
+        </div>
+        <div class="card">
+            <h3>Table Designs</h3>
+            <p>Beautiful themed tables with decorations.</p>
+            <p><b>Starting $25 per table</b></p>
+        </div>
+        <div class="card">
+            <h3>Backdrops</h3>
+            <p>Photo backdrops with balloons and decor.</p>
+            <p><b>Starting $220</b></p>
+        </div>
+    </div>
 </section>
 
 <section id="gallery">
-<h2>Past Work</h2>
-<div class="gallery">
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773699632863-a68571e2-d104-4ec9-bfa7-92f82ee3f8b4.jpeg" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773700520868-3ca00f2a-857f-4a6e-9fef-d3febfa8ee2a.png" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773700556346-f8d777fc-603c-42c5-8263-d85f0ff8a55e.png" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773701785734-bc684097-c1e8-40b7-b3dc-72bac0176c69.jpeg" alt="image" />
-<img loading="lazy" src="https://image2url.com/r2/default/images/1773701868486-66274001-e5ee-4fd7-80a7-87c2157ea2ff.jpeg" alt="image" />
-</div>
+    <h2>Past Work</h2>
+    <div class="gallery">
+        <img src="https://image2url.com/r2/default/images/1773699632863-a68571e2-d104-4ec9-bfa7-92f82ee3f8b4.jpeg" alt="Past Work 1" loading="lazy">
+    <img src="https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg" alt="Past Work 2" loading="lazy">
+    <img src="https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg" alt="Past Work 3" loading="lazy">
+    <img src="https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png" alt="Past Work 4" loading="lazy">
+    <img src="https://image2url.com/r2/default/images/1773700520868-3ca00f2a-857f-4a6e-9fef-d3febfa8ee2a.png" alt="Past Work 5" loading="lazy">
+    <img src="https://image2url.com/r2/default/images/1773700556346-f8d777fc-603c-42c5-8263-d85f0ff8a55e.png" alt="Past Work 6" loading="lazy">
+    </div>
 </section>
 
 <section id="rentals">
-<h2>Rental Items</h2>
-<ul class="rentals">
-<li>Throne Chair – $150</li>
-<li>Cylinder Stands (Set of 3) – $50</li>
-<li>Backdrop Stand – $80</li>
-<li>Table Cloth – $7</li>
-<li>Chair Cover – $1.50</li>
-<li>Table Runner – $1.00</li>
-<li>Chair Sashes – $0.50</li>
-<li>Robot Suit – $450</li>
-</ul>
+    <h2>Rental Items</h2>
+    <ul class="rentals">
+        <li>Throne Chair – $150</li>
+        <li>Cylinder Stands (Set of 3) – $50</li>
+        <li>Backdrop Stand – $80</li>
+        <li>Table Cloth – (Each) - $7</li>
+        <li>Chair Cover – (Each) - $1.50</li>
+        <li>Table Runner – (Each) - $1.00</li>
+        <li>Chair Sashes – (Each) - $0.50</li>
+        <li>Robot Suit – (Hourly) - $450</li>
+    </ul>
 </section>
 
 <section id="calculator">
-<h2>Price Estimate</h2>
-<div class="calculator">
-<label for="balloons">Balloon Garland:</label>
-<select id="balloons">
-<option value="0">No Balloon Garland</option>
-<option value="160">Balloon Garland ($160)</option>
-<option value="250">Large Garland ($250)</option>
-</select>
+    <h2>Price Estimate</h2>
+    <div class="calculator">
+        <select id="balloons">
+            <option value="0">No Balloon Garland</option>
+            <option value="160">Balloon Garland ($160)</option>
+            <option value="250">Large Garland ($250)</option>
+        </select>
 
-<label for="table">Table Type:</label>
-<select id="table">
-<option value="0">No Table Design</option>
-<option value="25">Basic Table ($25 each)</option>
-<option value="35">Premium Table ($35 each)</option>
-</select>
+        <select id="table">
+            <option value="0">No Table Design</option>
+            <option value="25">Basic Table ($25)</option>
+            <option value="35">Premium Table ($35)</option>
+        </select>
 
-<label for="tableQty">Number of Tables:</label>
-<div class="qty-container">
-  <button type="button" onclick="changeQty(-1)">-</button>
-  <input type="number" id="tableQty" min="0" value="0">
-  <button type="button" onclick="changeQty(1)">+</button>
-</div>
+        <select id="backdrop">
+            <option value="0">No Backdrop</option>
+            <option value="160">Backdrop ($160)</option>
+        </select>
 
-<label for="backdrop">Backdrop:</label>
-<select id="backdrop">
-<option value="0">No Backdrop</option>
-<option value="160">Backdrop ($160)</option>
-</select>
-
-<button onclick="calculate()">Calculate Estimate</button>
-<div class="result" id="result">$0</div>
-</div>
+        <button onclick="calculate()">Calculate Estimate</button>
+        <div class="result" id="result">$0</div>
+    </div>
 </section>
 
 <section id="quote">
-<h2>Request a Quote</h2>
-<div class="quote">
-<p>Click the button below to fill out our quote request form.</p>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSclf0RmXcOxY3XP06Laudp9lQ1S6mItcl8eBEmUbs2CUbOMZA/viewform?usp=header" 
-   target="_blank"
-   style="display:inline-block; text-align:center; background:#ff6fb7; color:white; padding:14px 25px; border-radius:8px; text-decoration:none; font-weight:bold;">
-   Request a Quote
-</a>
-</div>
+    <h2>Request a Quote</h2>
+    <div class="quote">
+        <p>Click the button below to fill out our quote request form. All submissions will be sent directly to our email via Google Forms.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSclf0RmXcOxY3XP06Laudp9lQ1S6mItcl8eBEmUbs2CUbOMZA/viewform?usp=header" 
+           target="_blank"
+           style="display:inline-block; text-align:center; background:#ff6fb7; color:white; padding:14px 25px; border-radius:8px; text-decoration:none; font-weight:bold;">
+           Request a Quote
+        </a>
+    </div>
 </section>
 
 <footer>
-<p>© 2026 Eventos con Encanto</p>
-<p>Balloon Decor & Event Styling</p>
+    <p>© 2026 Eventos con Encanto</p>
+    <p>Balloon Decor & Event Styling</p>
 </footer>
 
-<div id="lightbox">
-  <span id="lightbox-close">&times;</span>
-  <img id="lightbox-img" src="">
-</div>
-
 <script>
-// ===== Intro fade after 3s =====
-window.addEventListener('load', ()=>{
-  const intro = document.getElementById('site-intro');
-  setTimeout(()=>intro.style.display='none', 4000); // hides after animation
-});
-
-// ===== Calculator =====
 function calculate(){
-  const balloons = parseInt(document.getElementById("balloons").value)||0;
-  const tablePrice = parseInt(document.getElementById("table").value)||0;
-  const tableQty = parseInt(document.getElementById("tableQty").value)||0;
-  const backdrop = parseInt(document.getElementById("backdrop").value)||0;
-  const total = balloons + (tablePrice*tableQty) + backdrop;
-  const result = document.getElementById("result");
-  let current=0;
-  let step=Math.ceil(total/20);
-  const interval=setInterval(()=>{
-    current+=step;
-    if(current>=total) current=total, clearInterval(interval);
-    result.innerText="$"+current;
-  },20);
+    let balloons = parseInt(document.getElementById("balloons").value)
+    let table = parseInt(document.getElementById("table").value)
+    let backdrop = parseInt(document.getElementById("backdrop").value)
+
+    let total = balloons + table + backdrop
+
+    // Animate counting
+    let result = document.getElementById("result")
+    let current = 0
+    let step = Math.ceil(total / 20)
+    let interval = setInterval(() => {
+        current += step
+        if(current >= total) current = total, clearInterval(interval)
+        result.innerText = "$" + current
+    }, 20)
 }
 
-// ===== Quantity spinner =====
-function changeQty(amount){
-  const input = document.getElementById('tableQty');
-  let val = parseInt(input.value)||0;
-  val += amount;
-  if(val<0) val=0;
-  input.value=val;
-}
-
-// ===== Lightbox =====
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
-const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
-let currentIndex=0;
-
-function openLightbox(index){
-  currentIndex=index;
-  lightbox.style.display='flex';
-  lightboxImg.src=galleryImages[currentIndex].src;
-}
-function changeLightbox(step){
-  currentIndex=(currentIndex+step+galleryImages.length)%galleryImages.length;
-  lightboxImg.src=galleryImages[currentIndex].src;
-}
-galleryImages.forEach((img,idx)=>img.addEventListener('click',()=>openLightbox(idx)));
-lightboxClose.addEventListener('click',()=>lightbox.style.display='none');
-lightbox.addEventListener('click',e=>{if(e.target===lightbox) lightbox.style.display='none';});
-
-// Touch swipe
-let startX=0;
-lightboxImg.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
-lightboxImg.addEventListener('touchend',e=>{
-  let diffX=e.changedTouches[0].clientX-startX;
-  if(diffX>50) changeLightbox(-1);
-  if(diffX<-50) changeLightbox(1);
-});
-
-// Masonry resizing
-function resizeMasonryItem(img){
-  const rowHeight = parseInt(getComputedStyle(img.parentElement).getPropertyValue('grid-auto-rows'));
-  const rowGap = parseInt(getComputedStyle(img.parentElement).getPropertyValue('gap'));
-  const height = img.getBoundingClientRect().height;
-  const rowSpan = Math.ceil((height + rowGap) / (rowHeight + rowGap));
-  img.style.gridRowEnd = "span "+rowSpan;
-}
-galleryImages.forEach(img=>{
-  img.addEventListener('load', ()=>resizeMasonryItem(img));
-  if(img.complete) resizeMasonryItem(img);
-});
-window.addEventListener('resize', ()=>galleryImages.forEach(img=>resizeMasonryItem(img)));
-
-// Smooth scroll
-document.querySelectorAll('nav a').forEach(link=>{
-  link.addEventListener('click',e=>{
-    e.preventDefault();
-    const target=document.querySelector(link.getAttribute('href'));
-    target.scrollIntoView({behavior:'smooth', block:'start'});
-  });
+// Smooth scrolling for nav links
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+    });
 });
 </script>
 
