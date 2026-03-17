@@ -350,57 +350,35 @@ document.getElementById("result").innerText="$"+current;
 
 confetti();
 }
-/* confetti */
-function confetti(){
+function confetti() {
+  for (let i = 0; i < 40; i++) {
+    let c = document.createElement("div");
+    c.style.position = "fixed";
+    c.style.width = "8px";
+    c.style.height = "8px";
+    c.style.background = ["#ff6fb7","#ffd1e8","#ffa3d7","#ffffff"][Math.floor(Math.random() * 4)];
+    
+    // Set initial position along the **top edge**
+    c.style.left = Math.random() * window.innerWidth + "px";
+    c.style.top = "-10px"; // starts above the viewport
+    
+    c.style.borderRadius = "50%";
+    c.style.zIndex = "9999";
+    
+    document.body.appendChild(c);
 
-for(let i=0;i<50;i++){
-
-let c=document.createElement("div");
-
-c.style.position="fixed";
-c.style.width="6px";
-c.style.height="10px";
-c.style.background=["#ff6fb7","#ffd1e8","#ffa3d7","#ffffff"][Math.floor(Math.random()*4)];
-c.style.left=Math.random()*100+"vw";
-
-/* ALWAYS start above screen */
-c.style.top=-(Math.random()*50+10)+"px";
-
-c.style.borderRadius="2px";
-c.style.zIndex="9999";
-c.style.pointerEvents="none";
-
-document.body.appendChild(c);
-
-/* movement */
-let xDrift=(Math.random()-0.5)*3;
-let fallSpeed=2+Math.random()*4;
-let rotate=Math.random()*360;
-
-let fall=setInterval(()=>{
-
-let top=parseFloat(c.style.top);
-let left=parseFloat(c.style.left);
-
-/* falling down */
-c.style.top=(top+fallSpeed)+"px";
-
-/* slight side drift */
-c.style.left=(left+xDrift)+"px";
-
-/* spinning */
-rotate+=5;
-c.style.transform="rotate("+rotate+"deg)";
-
-if(top>window.innerHeight){
-clearInterval(fall);
-c.remove();
-}
-
-},16);
-
-}
-
+    // Each confetti falls with a tiny random horizontal drift
+    let drift = (Math.random() - 0.5) * 2; // -1 to 1 px per frame
+    let fall = setInterval(() => {
+      c.style.top = parseFloat(c.style.top) + 5 + "px"; // vertical fall
+      c.style.left = parseFloat(c.style.left) + drift + "px"; // horizontal drift
+      
+      if (parseFloat(c.style.top) > window.innerHeight) {
+        clearInterval(fall);
+        c.remove();
+      }
+    }, 16);
+  }
 }
 /* LIGHTBOX + SWIPE */
 
