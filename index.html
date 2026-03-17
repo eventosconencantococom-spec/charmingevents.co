@@ -24,7 +24,6 @@ header {
   color:white;
   padding:100px 20px;
   text-align:center;
-  position: relative;
 }
 
 header h1 { font-size:48px; margin:0; }
@@ -40,6 +39,10 @@ header p { font-size:20px; }
   display:inline-block;
   margin-top:20px;
   transition: transform 0.2s ease, padding 0.2s ease, font-size 0.2s ease;
+}
+
+.cta:hover {
+  transform: scale(1.05);
 }
 
 nav {
@@ -64,7 +67,6 @@ section {
   min-width:300px;
   box-sizing:border-box;
   display:flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
@@ -93,22 +95,31 @@ h2 { text-align:center; margin-bottom:40px; }
   box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
+/* ===== Pinterest-style Masonry Gallery ===== */
 .gallery {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:15px;
+  column-count: 3;
+  column-gap: 15px;
   width: 100%;
-  touch-action: pan-y;
 }
 
 .gallery img {
-  width:100%;
-  border-radius:10px;
-  cursor:pointer;
-  transition: transform 0.3s ease;
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  break-inside: avoid;
 }
 
-.gallery img:hover { transform: scale(1.05); }
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Responsive Masonry */
+@media (max-width: 1024px) { .gallery { column-count: 2; } }
+@media (max-width: 600px) { .gallery { column-count: 1; } }
 
 .rentals {
   max-width:600px;
@@ -202,7 +213,7 @@ footer {
   header .cta { padding:10px 15px; font-size:14px; display:block; margin:15px auto 0; max-width:100%; }
   nav a { display:block; margin:8px 0; }
   section { padding-left:5%; padding-right:5%; }
-  .services, .gallery { grid-template-columns:1fr; gap:15px; }
+  .services { grid-template-columns:1fr; gap:15px; }
   .rentals li { font-size:16px; padding:12px; }
   button, .cta, input, select, textarea { width:100%; font-size:16px; }
 }
@@ -228,9 +239,9 @@ footer {
 <section id="services">
 <h2>Our Services</h2>
 <div class="services">
-<div class="card" data-count="120"><h3>Balloon Garlands</h3><p>Custom balloon garlands.</p></div>
-<div class="card" data-count="80"><h3>Table Designs</h3><p>Themed table setups.</p></div>
-<div class="card" data-count="150"><h3>Backdrops</h3><p>Photo backdrops with decor.</p></div>
+<div class="card"><h3>Balloon Garlands</h3><p>Custom balloon garlands.</p></div>
+<div class="card"><h3>Table Designs</h3><p>Themed table setups.</p></div>
+<div class="card"><h3>Backdrops</h3><p>Photo backdrops with decor.</p></div>
 </div>
 </section>
 
@@ -241,20 +252,24 @@ footer {
 <img loading="lazy" src="https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg" alt="image" />
 <img loading="lazy" src="https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg" alt="image" />
 <img loading="lazy" src="https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773700520868-3ca00f2a-857f-4a6e-9fef-d3febfa8ee2a.png" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773700556346-f8d777fc-603c-42c5-8263-d85f0ff8a55e.png" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773701785734-bc684097-c1e8-40b7-b3dc-72bac0176c69.jpeg" alt="image" />
+<img loading="lazy" src="https://image2url.com/r2/default/images/1773701868486-66274001-e5ee-4fd7-80a7-87c2157ea2ff.jpeg" alt="image" />
 </div>
 </section>
 
 <section id="rentals">
 <h2>Rental Items</h2>
 <ul class="rentals">
-<li data-count="150">Throne Chair – $150</li>
-<li data-count="50">Cylinder Stands (Set of 3) – $50</li>
-<li data-count="80">Backdrop Stand – $80</li>
-<li data-count="7">Table Cloth – $7</li>
-<li data-count="1.5">Chair Cover – $1.50</li>
-<li data-count="1">Table Runner – $1.00</li>
-<li data-count="0.5">Chair Sashes – $0.50</li>
-<li data-count="450">Robot Suit – $450</li>
+<li>Throne Chair – $150</li>
+<li>Cylinder Stands (Set of 3) – $50</li>
+<li>Backdrop Stand – $80</li>
+<li>Table Cloth – $7</li>
+<li>Chair Cover – $1.50</li>
+<li>Table Runner – $1.00</li>
+<li>Chair Sashes – $0.50</li>
+<li>Robot Suit – $450</li>
 </ul>
 </section>
 
@@ -305,7 +320,7 @@ footer {
 
 <script>
 // =====================
-// Estimate Calculator + Confetti
+// Calculator + Confetti
 // =====================
 function calculate(){
   const balloons = parseInt(document.getElementById("balloons").value) || 0;
@@ -386,10 +401,6 @@ lightboxImg.addEventListener('touchend',e=>{
   if(diffX<-50) changeLightbox(1);
 });
 
-// =====================
-// Lazy load (modern browsers already handle <img loading="lazy">)
-
-// =====================
 // Smooth scroll nav
 document.querySelectorAll('nav a').forEach(link=>{
   link.addEventListener('click',e=>{
