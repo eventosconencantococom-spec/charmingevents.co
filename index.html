@@ -8,6 +8,11 @@
 
 <style>
 
+  html, body {
+    width: 100%;
+      overflow-x: hidden;
+  }
+
 body{
 margin:0;
 font-family:'Dancing Script', cursive;
@@ -57,6 +62,9 @@ font-weight:bold;
 
 section{
 padding:60px 10%;
+  width:100%;
+  min-width:300px;
+  box-sizing:border-box;
 }
 
 h2{
@@ -171,10 +179,10 @@ margin-top:50px;
     padding: 60px 20px;
   }
   header h1 {
-    font-size: 32px;
+    font-size: 28px;
   }
   header p {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   /* Navigation links stack vertically */
@@ -187,14 +195,21 @@ margin-top:50px;
     margin: 8px 0;
   }
 
+  section {
+    padding-left: 5%
+      padding-right: 5%;
+  }
+
   /* Services grid stack */
   .services {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   /* Gallery grid stack */
   .gallery {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   /* Rentals list spacing */
@@ -210,7 +225,7 @@ margin-top:50px;
   }
 
   /* Buttons full width */
-  button, .cta {
+  button, .cta, input, select, textarea {
     width: 100%;
     font-size: 16px;
   }
