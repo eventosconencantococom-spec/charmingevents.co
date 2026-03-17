@@ -459,15 +459,7 @@ header .cta {
 
 <script>
 
-  // Smooth scrolling for nav links
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    target.scrollIntoView({ behavior: 'smooth' });
-  });
-});
-
+ 
 function calculate(){
 
 let balloons = parseInt(document.getElementById("balloons").value)
@@ -510,6 +502,15 @@ lightboxClose.addEventListener('click', () => {
 lightbox.addEventListener('click', e => {
   if(e.target === lightbox) lightbox.style.display = 'none';
 });
+   // Smooth scrolling for nav links
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
 
 
 </script>
