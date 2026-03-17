@@ -41,9 +41,7 @@ header p { font-size:20px; }
   transition: transform 0.2s ease, padding 0.2s ease, font-size 0.2s ease;
 }
 
-.cta:hover {
-  transform: scale(1.05);
-}
+.cta:hover { transform: scale(1.05); }
 
 nav {
   background:#333;
@@ -97,30 +95,28 @@ h2 { text-align:center; margin-bottom:40px; }
 
 /* ===== Pinterest-style Masonry Gallery ===== */
 .gallery {
-  column-count: 3;
-  column-gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: 10px;
+  grid-auto-flow: dense;
+  gap: 15px;
   width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .gallery img {
   width: 100%;
-  margin-bottom: 15px;
   border-radius: 10px;
   cursor: pointer;
   display: block;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  break-inside: avoid;
 }
 
-.gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
+/* Responsive Masonry handled dynamically with JS */
 
-/* Responsive Masonry */
-@media (max-width: 1024px) { .gallery { column-count: 2; } }
-@media (max-width: 600px) { .gallery { column-count: 1; } }
-
+/* Rentals */
 .rentals {
   max-width:600px;
   margin:auto;
@@ -141,6 +137,7 @@ h2 { text-align:center; margin-bottom:40px; }
   transform: translateX(3px);
 }
 
+/* Calculator & quote */
 .calculator, .quote {
   max-width:500px;
   width: 100%;
@@ -178,6 +175,7 @@ footer {
   margin-top:50px;
 }
 
+/* Lightbox */
 #lightbox {
   position: fixed;
   top:0; left:0;
@@ -265,10 +263,10 @@ footer {
 <li>Throne Chair – $150</li>
 <li>Cylinder Stands (Set of 3) – $50</li>
 <li>Backdrop Stand – $80</li>
-<li>Table Cloth – $7 - (Each)</li>
-<li>Chair Cover – $1.50 - (Each)</li>
-<li>Table Runner – $1.00 - (Each)</li>
-<li>Chair Sashes – $0.50 - (Each)</li>
+<li>Table Cloth – $7</li>
+<li>Chair Cover – $1.50</li>
+<li>Table Runner – $1.00</li>
+<li>Chair Sashes – $0.50</li>
 <li>Robot Suit – $450</li>
 </ul>
 </section>
@@ -408,6 +406,27 @@ document.querySelectorAll('nav a').forEach(link=>{
     const target=document.querySelector(link.getAttribute('href'));
     target.scrollIntoView({behavior:'smooth', block:'start'});
   });
+});
+
+// =====================
+// Masonry image span adjustment
+// =====================
+function resizeMasonryItem(img){
+  const rowHeight = parseInt(getComputedStyle(img.parentElement).getPropertyValue('grid-auto-rows'));
+  const rowGap = parseInt(getComputedStyle(img.parentElement).getPropertyValue('gap'));
+  const height = img.getBoundingClientRect().height;
+  const rowSpan = Math.ceil((height + rowGap) / (rowHeight + rowGap));
+  img.style.gridRowEnd = "span " + rowSpan;
+}
+
+const galleryImagesMasonry = document.querySelectorAll('.gallery img');
+galleryImagesMasonry.forEach(img=>{
+  img.addEventListener('load', ()=>resizeMasonryItem(img));
+  if(img.complete) resizeMasonryItem(img);
+});
+
+window.addEventListener('resize', ()=>{
+  galleryImagesMasonry.forEach(img=>resizeMasonryItem(img));
 });
 </script>
 </body>
