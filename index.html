@@ -1,56 +1,90 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Eventos con Encanto</title>
 
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Eventos con Encanto</title>
 
 <style>
 
-html, body {
-width:100%;
+body{
+margin:0;
+font-family:Arial;
+background:#fafafa;
+color:#333;
 overflow-x:hidden;
 }
 
-body{
-margin:0;
-font-family:'Dancing Script', cursive;
-background:#fafafa;
-color:#333;
-}
+/* HERO INTRO */
 
-header{
-background:linear-gradient(135deg,#ff6fb7,#ffa3d7);
-color:white;
-padding:100px 20px;
+.hero{
+height:90vh;
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
+color:white;
+background-size:cover;
+background-position:center;
+animation:slideHero 25s infinite;
 }
 
-header h1{
+@keyframes slideHero{
+
+0%{
+background-image:url("https://image2url.com/r2/default/images/1773699632863-a68571e2-d104-4ec9-bfa7-92f82ee3f8b4.jpeg");
+}
+
+33%{
+background-image:url("https://image2url.com/r2/default/images/1773699682560-ff44fff4-c08b-4310-a774-6160e65a7cda.jpeg");
+}
+
+66%{
+background-image:url("https://image2url.com/r2/default/images/1773699722556-5545fc02-05a1-460b-ad10-b7510e5a8a0f.jpeg");
+}
+
+100%{
+background-image:url("https://image2url.com/r2/default/images/1773700417942-c5991554-a415-4162-a6ff-6960cdb8128b.png");
+}
+
+}
+
+.hero-content{
+background:rgba(0,0,0,0.45);
+padding:40px;
+border-radius:12px;
+}
+
+.hero h1{
 font-size:48px;
 margin:0;
 }
 
-header p{
+.hero p{
 font-size:20px;
+margin-top:10px;
 }
 
 .cta{
-background:white;
-color:#ff6fb7;
-padding:15px 30px;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
 display:inline-block;
 margin-top:20px;
+padding:14px 28px;
+background:#ff6fb7;
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
 }
+
+/* NAV */
 
 nav{
 background:#333;
-padding:12px;
 text-align:center;
+padding:14px;
 position:sticky;
 top:0;
 z-index:1000;
@@ -63,17 +97,18 @@ text-decoration:none;
 font-weight:bold;
 }
 
+/* SECTIONS */
+
 section{
 padding:60px 10%;
-width:100%;
-min-width:300px;
-box-sizing:border-box;
 }
 
 h2{
 text-align:center;
 margin-bottom:40px;
 }
+
+/* SERVICES */
 
 .services{
 display:grid;
@@ -83,17 +118,13 @@ gap:20px;
 
 .card{
 background:white;
-border-radius:12px;
 padding:25px;
-box-shadow:0 6px 15px rgba(0,0,0,0.1);
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 text-align:center;
-transition:.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 20px rgba(0,0,0,0.15);
-}
+/* PINTEREST GALLERY */
 
 .gallery{
 column-count:3;
@@ -104,8 +135,9 @@ column-gap:15px;
 width:100%;
 margin-bottom:15px;
 border-radius:10px;
-display:block;
 }
+
+/* RENTALS */
 
 .rentals{
 max-width:600px;
@@ -115,81 +147,78 @@ margin:auto;
 .rentals li{
 background:white;
 margin:10px 0;
-padding:15px;
+padding:14px;
 border-radius:8px;
 box-shadow:0 3px 8px rgba(0,0,0,0.1);
-transition:.3s;
 }
 
-.rentals li:hover{
-background:#ffe6f2;
-transform:translateX(3px);
-}
+/* ESTIMATE */
 
-.quote{
+.calculator{
 max-width:500px;
 margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 input,select{
 width:100%;
 padding:12px;
-margin-top:10px;
 margin-bottom:15px;
 border-radius:6px;
 border:1px solid #ccc;
 }
 
 button{
+width:100%;
+padding:14px;
+border:none;
 background:#ff6fb7;
 color:white;
-border:none;
-padding:14px;
 border-radius:8px;
 font-size:16px;
 cursor:pointer;
-width:100%;
-}
-
-.calculator{
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-max-width:500px;
-margin:auto;
 }
 
 .result{
-font-size:22px;
+font-size:24px;
 text-align:center;
 margin-top:20px;
 font-weight:bold;
 }
+
+/* QUOTE */
+
+.quote{
+text-align:center;
+}
+
+/* FOOTER */
 
 footer{
 background:#333;
 color:white;
 text-align:center;
 padding:25px;
-margin-top:50px;
+margin-top:40px;
 }
 
-/* Mobile fixes */
-@media (max-width:768px){
+/* MOBILE */
 
-header{padding:60px 20px;}
+@media(max-width:768px){
 
-header h1{font-size:28px;}
+.gallery{
+column-count:2;
+}
 
-header p{font-size:14px;}
+.hero h1{
+font-size:32px;
+}
 
-header .cta{
-padding:10px 15px;
-font-size:14px;
-display:block;
-margin:15px auto;
-max-width:100%;
+.hero p{
+font-size:16px;
 }
 
 nav a{
@@ -198,77 +227,64 @@ margin:8px 0;
 }
 
 section{
-padding-left:5%;
-padding-right:5%;
-}
-
-.services{
-grid-template-columns:1fr;
-}
-
-.gallery{
-column-count:2;
-}
-
-.calculator,.quote{
-width:100%;
-max-width:100%;
-margin:20px auto;
-}
-
-.rentals{
-max-width:100%;
-padding:0 10px;
+padding:40px 6%;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header>
+<header class="hero">
+
+<div class="hero-content">
+
 <h1>Eventos con Encanto</h1>
-<p>Balloon Decor • Table Designs • Party Rentals</p>
-<a class="cta" href="#quote">Request a Quote</a>
+
+<p id="typing"></p>
+
+<a href="#quote" class="cta">Request a Quote</a>
+
+</div>
+
 </header>
 
 <nav>
-<a href="#services">Services</a>
-<a href="#gallery">Gallery</a>
-<a href="#rentals">Rentals</a>
-<a href="#calculator">Estimate</a>
-<a href="#quote">Quote</a>
+
+<a href="#services">Services</a> <a href="#gallery">Gallery</a> <a href="#rentals">Rentals</a> <a href="#estimate">Estimate</a> <a href="#quote">Quote</a>
+
 </nav>
 
 <section id="services">
+
 <h2>Our Services</h2>
 
 <div class="services">
 
 <div class="card">
 <h3>Balloon Garlands</h3>
-<p>Custom balloon garlands for birthdays, showers, and events.</p>
-<p><b>Starting $160</b></p>
+<p>Starting $160</p>
 </div>
 
 <div class="card">
 <h3>Table Designs</h3>
-<p>Beautiful themed tables with decorations.</p>
-<p><b>Starting $25 per table</b></p>
+<p>$25 per table</p>
 </div>
 
 <div class="card">
 <h3>Backdrops</h3>
-<p>Photo backdrops with balloons and decor.</p>
-<p><b>Starting $220</b></p>
+<p>Starting $220</p>
 </div>
 
 </div>
+
 </section>
 
 <section id="gallery">
+
 <h2>Past Work</h2>
 
 <div class="gallery">
@@ -286,26 +302,30 @@ padding:0 10px;
 <img loading="lazy" src="https://image2url.com/r2/default/images/1773700556346-f8d777fc-603c-42c5-8263-d85f0ff8a55e.png">
 
 </div>
+
 </section>
 
 <section id="rentals">
+
 <h2>Rental Items</h2>
 
 <ul class="rentals">
 
 <li>Throne Chair – $150</li>
-<li>Cylinder Stands (Set of 3) – $50</li>
+<li>Cylinder Stands – $50</li>
 <li>Backdrop Stand – $80</li>
-<li>Table Cloth – (Each) - $7</li>
-<li>Chair Cover – (Each) - $1.50</li>
-<li>Table Runner – (Each) - $1.00</li>
-<li>Chair Sashes – (Each) - $0.50</li>
-<li>Robot Suit – (Hourly) - $450</li>
+<li>Table Cloth – $7 each</li>
+<li>Chair Cover – $1.50 each</li>
+<li>Table Runner – $1 each</li>
+<li>Chair Sashes – $0.50 each</li>
+<li>Robot Suit – $450 per hour</li>
 
 </ul>
+
 </section>
 
-<section id="calculator">
+<section id="estimate">
+
 <h2>Price Estimate</h2>
 
 <div class="calculator">
@@ -322,7 +342,7 @@ padding:0 10px;
 <option value="35">Premium Table ($35)</option>
 </select>
 
-<input type="number" id="tableQty" value="1" min="1" placeholder="Number of Tables">
+<input type="number" id="tables" value="1" min="1" placeholder="Number of Tables">
 
 <select id="backdrop">
 <option value="0">No Backdrop</option>
@@ -331,101 +351,114 @@ padding:0 10px;
 
 <button onclick="calculate()">Calculate Estimate</button>
 
-<div class="result" id="result">$0</div>
+<div id="result" class="result">$0</div>
 
 </div>
+
 </section>
 
 <section id="quote">
+
 <h2>Request a Quote</h2>
 
 <div class="quote">
 
-<p>Click below to fill out our quote request form.</p>
-
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSclf0RmXcOxY3XP06Laudp9lQ1S6mItcl8eBEmUbs2CUbOMZA/viewform?usp=header"
-target="_blank"
-style="display:inline-block;background:#ff6fb7;color:white;padding:14px 25px;border-radius:8px;text-decoration:none;font-weight:bold;">
-Request a Quote
+<a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSclf0RmXcOxY3XP06Laudp9lQ1S6mItcl8eBEmUbs2CUbOMZA/viewform?usp=header" target="_blank">
+Open Quote Form
 </a>
 
 </div>
+
 </section>
 
 <footer>
+
 <p>© 2026 Eventos con Encanto</p>
+
 </footer>
 
 <script>
 
+/* typing intro */
+
+const text="Turning Moments Into Magical Events";
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,60);
+
+}
+
+}
+
+type();
+
+/* calculator */
+
 function calculate(){
 
-let balloons=parseInt(document.getElementById("balloons").value)
+let balloons=parseInt(document.getElementById("balloons").value);
 
-let tablePrice=parseInt(document.getElementById("table").value)
+let tablePrice=parseInt(document.getElementById("table").value);
 
-let tableQty=parseInt(document.getElementById("tableQty").value)||1
+let tableQty=parseInt(document.getElementById("tables").value);
 
-let backdrop=parseInt(document.getElementById("backdrop").value)
+let backdrop=parseInt(document.getElementById("backdrop").value);
 
-let total=balloons+(tablePrice*tableQty)+backdrop
+let total=balloons+(tablePrice*tableQty)+backdrop;
 
-let result=document.getElementById("result")
+document.getElementById("result").innerText="$"+total;
 
-let current=0
-
-let step=Math.ceil(total/20)
-
-let interval=setInterval(()=>{
-
-current+=step
-
-if(current>=total){
-current=total
-clearInterval(interval)
-confetti()
-}
-
-result.innerText="$"+current
-
-},20)
+confetti();
 
 }
+
+/* confetti */
 
 function confetti(){
 
 for(let i=0;i<40;i++){
 
-let c=document.createElement("div")
+let c=document.createElement("div");
 
-c.style.position="fixed"
-c.style.width="8px"
-c.style.height="8px"
-c.style.background=["#ff6fb7","#ffd1e8","#ffa3d7","#ffffff"][Math.floor(Math.random()*4)]
-c.style.left=Math.random()*100+"vw"
-c.style.top="-10px"
+c.style.position="fixed";
 
-document.body.appendChild(c)
+c.style.width="8px";
+
+c.style.height="8px";
+
+c.style.background=["#ff6fb7","#ffd1e8","#ffa3d7","#ffffff"][Math.floor(Math.random()*4)];
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.top="-10px";
+
+document.body.appendChild(c);
 
 let fall=setInterval(()=>{
-c.style.top=parseInt(c.style.top)+5+"px"
+
+c.style.top=parseInt(c.style.top)+5+"px";
+
 if(parseInt(c.style.top)>window.innerHeight){
-clearInterval(fall)
-c.remove()
+
+clearInterval(fall);
+
+c.remove();
+
 }
-},16)
+
+},16);
 
 }
 
 }
-
-document.querySelectorAll('nav a').forEach(link=>{
-link.addEventListener('click',e=>{
-e.preventDefault()
-const target=document.querySelector(link.getAttribute('href'))
-target.scrollIntoView({behavior:'smooth'})
-})
-})
 
 </script>
 
